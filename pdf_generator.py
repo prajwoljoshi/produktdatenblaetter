@@ -287,7 +287,7 @@ def generate_emico_pdf(basic_info, base_specs, technical_specs, drawing_data, cl
         except:
             return None
 
-    img_links = [l for l in clean_links if not re.search(r"_zg(?:_\\d+)?\\.(jpg|png)$", l, re.I)]
+    img_links = [l for l in clean_links if not re.search(r"_zg(?:_\d+)?\.(jpg|png)$", l, re.I)]
     img_links = img_links[:3]
 
     if img_links:
@@ -337,7 +337,7 @@ def generate_emico_pdf(basic_info, base_specs, technical_specs, drawing_data, cl
     # === Drawing ===
     story.append(Paragraph(f"<b>{drawing_labels.get(lang)}</b>", styles["CustomHeading"]))
 
-    zg_links = [l for l in clean_links if re.search(r"_zg(?:_\\d+)?\\.(jpg|png)$", l, re.I)]
+    zg_links = [l for l in clean_links if re.search(r"_zg.*\.(jpg|png)$", l, re.I)]
     if zg_links:
         zg_img = make_resized_image(zg_links[0], PAGE_WIDTH - 5 * cm, PAGE_HEIGHT / 5)
         if zg_img:

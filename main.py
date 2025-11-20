@@ -1,5 +1,6 @@
 import threading
 from utils import extract_language
+from pathlib import Path
 # === Background preloading to improve perceived startup ===
 def preload_dependencies():
     try:
@@ -35,7 +36,7 @@ def get_emico_data(url):
         return list(set(clean_links))
 
     clean_links = get_images_links(soup)
-
+    print(clean_links)
     def get_basic_info(soup):
         product_info = {}
         info_section = soup.select_one("div.col-lg-6.col-xl-8.ps-lg-4.ps-xl-5")
@@ -130,7 +131,7 @@ if __name__ == "__main__":
             print("🧾 Generating PDF...")
             save_path = input("Enter folder to save PDF (leave empty for default Downloads): ").strip()
             if not save_path:
-                save_path = None
+                save_path = Path(r"G:\6Artikel\Datenblätter(Produkte)")
 
             generate_emico_pdf(
                 basic_info,
