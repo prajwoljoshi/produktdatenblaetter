@@ -23,23 +23,16 @@ def generate_emico_pdf(basic_info, base_specs, technical_specs, drawing_data, cl
     from reportlab.lib.units import cm
     from reportlab.lib.utils import ImageReader
 
-    # === Save folder logic ===
-    if save_folder is None:
-        save_folder = Path.home() / "Downloads"
-    else:
-        save_folder = Path(save_folder).expanduser().resolve()
-
-    os.makedirs(save_folder, exist_ok=True)
 
     # === Filename suffix ===
     filename_labels = {
-        "de": "datenblatt_de",
-        "en": "product-sheet_en",
-        "fr": "fiche-technique_fr",
-        "es": "hoja-tecnica_es",
-        "it": "scheda-tecnica_it"
+        "de": "Datenblatt_de",
+        "en": "Productsheet_en",
+        "fr": "FicheDeDonnées_fr",
+        "es": "FichaDeDatos_es",
+        "it": "SchedaDati_it"
     }
-    suffix = filename_labels.get(lang, "datenblatt_de")
+    suffix = filename_labels.get(lang, "Datenblatt_de")
 
     output_filename = os.path.join(
         save_folder,

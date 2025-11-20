@@ -140,7 +140,7 @@ class EmicoApp(ctk.CTk):
             # === Speicherordner behandeln ===
             try:
                 if self.selected_folder is None:
-                    save_folder = Path.home() / "Downloads"
+                    save_folder = Path(r"G:\6Artikel\Datenblätter(Produkte)")
                 else:
                     save_folder = Path(self.selected_folder).expanduser().resolve()
 
@@ -150,7 +150,7 @@ class EmicoApp(ctk.CTk):
             except (OSError, TypeError):
                 # Wenn ungültig, auf Downloads zurückgreifen
                 self.update_progress(0.4, "⚠️ Ungültiger Ordner – Downloads wird verwendet.")
-                save_folder = Path.home() / "Downloads"
+                save_folder = Path(r"G:\6Artikel\Datenblätter(Produkte)")
                 save_folder.mkdir(parents=True, exist_ok=True)
 
             self.update_progress(0.7, "🧾 PDF wird generiert...")
