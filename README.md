@@ -1,72 +1,124 @@
-# Emico PDF Generator
+Hier ist die vollständige Übersetzung ins Deutsche — klar, professionell und für technische Dokumentation geeignet:
 
-A small utility (GUI + CLI) that scrapes Emico product pages and generates printable product datasheets (PDF).
+---
 
-Project maintained by: syskomp gehmeyr GmbH — Emico Division
-Website: https://www.emico.com
+# **Emico PDF Generator**
 
-Quick summary
-- Purpose: Fetch product information from Emico product pages and compile it into a formatted PDF datasheet.
-- Modes: GUI (`ui.py`) and standalone/CLI (`main.py`).
-- Output: PDF files saved to a configurable folder.
+Ein kleines Dienstprogramm (GUI + CLI), das Emico-Produktseiten ausliest und druckbare Produktdatenblätter (PDF) generiert.
 
-Requirements
-See `requirements.txt` for the external Python packages used by the project.
+Projektbetreiber: **syskomp gehmeyr GmbH — Emico Division**
+Website: [https://www.emico.com](https://www.emico.com)
 
-Installation
-1. Install Python 3.9+ (recommended).
-2. Create a virtual environment and activate it:
+---
+
+## **Kurze Zusammenfassung**
+
+* **Zweck:** Abrufen von Produktinformationen von Emico-Produktseiten und Zusammenstellen eines formatierten PDF-Datenblatts.
+* **Modi:** GUI (`ui.py`) und Standalone/CLI (`main.py`).
+* **Ausgabe:** PDF-Dateien, die in einem konfigurierbaren Ordner gespeichert werden.
+
+---
+
+## **Voraussetzungen**
+
+Siehe `requirements.txt` für die im Projekt verwendeten externen Python-Pakete.
+
+---
+
+## **Installation**
+
+1. **Python 3.9+ installieren** (empfohlen).
+2. **Virtuelle Umgebung erstellen und aktivieren:**
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 ```
 
-3. Install dependencies:
+3. **Abhängigkeiten installieren:**
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-Usage
-- GUI mode (recommended for non-technical users):
+---
+
+## **Verwendung**
+
+### **GUI-Modus** (für nicht-technische Nutzer empfohlen):
 
 ```powershell
 python ui.py
 ```
 
-- Standalone / CLI mode:
+### **Standalone / CLI-Modus:**
 
 ```powershell
 python main.py
 ```
 
-Notes and configuration
-- The project currently uses a fallback hardcoded save folder (`G:\6Artikel\Datenblätter(Produkte)`) in `main.py` and `ui.py` when a folder is not provided. It's recommended to change this to a configurable path (environment variable, CLI argument, or `Path.home()/"Downloads"`) before publishing.
-- Example change: use an environment variable `EMICO_PDF_OUTPUT` or add a `--output` CLI option.
+---
 
-Data files and build artifacts
-- This repository contains example Excel files (`Mappe1.xlsx`, `Importvorlage_aktuell.xlsx`). These files may contain environment-specific paths and/or company data.
-- We recommend not committing raw data or build artifacts. Keep `build/` and `.xlsx` files out of the repo or add sanitized examples only.
+## **Hinweise und Konfiguration**
 
-Legal / scraping note
-- The tool scrapes emico.com to assemble datasheets. Make sure scraping and automated requests comply with Emico's terms of use and robots.txt. For commercial or bulk usage, coordinate with the Emico team / legal to avoid rate-limiting or policy violations.
+* Das Projekt verwendet derzeit einen fest codierten Standard-Speicherordner
+  (`G:\6Artikel\Datenblätter(Produkte)`) in `main.py` und `ui.py`, falls kein Ordner angegeben wird.
+  Es wird empfohlen, dies vor einer Veröffentlichung anzupassen (Umgebungsvariable, CLI-Argument oder z. B. `Path.home()/"Downloads"`).
 
-Making the code more modular (recommended changes)
-- Separate concerns into modules:
-  - `scraper.py`: all web-scraping and parsing logic (currently in `main.py`).
-  - `pdf.py`: PDF generation logic (currently `pdf_generator.py`) — can be kept but refactored to expose a small public API.
-  - `cli.py`: CLI argument handling and entrypoint.
-  - `gui.py`: UI code (already `ui.py`) — keep UI logic separate and only call public APIs from scraper/pdf modules.
-- Benefits: easier testing, clearer boundaries, smaller surface for changes, better reuse.
-
-When you want a executable application, execute the following command in terminal. You can replace the name "PDF-Generator_v1.2" with the name you like.
-pyinstaller --onefile --noconsole -clean --name "PDF-Generator_v1.2" --icon "assets/emicologo.ico" --add-data "assets:assets" ui.py
- 
-Contact
-For questions about content or licensing, contact `sales@emico.com` or the repository owner in the syskomp group.
+* Beispieländerung:
+  Nutzung einer Umgebungsvariable **`EMICO_PDF_OUTPUT`** oder Hinzufügen einer CLI-Option **`--output`**.
 
 ---
 
-Generated: 2025-11-27
+## **Daten-Dateien und Build-Artefakte**
 
+* Dieses Repository enthält Beispiel-Excel-Dateien (`Mappe1.xlsx`, `Importvorlage_aktuell.xlsx`).
+  Diese Dateien können umgebungsspezifische Pfade und/oder Firmendaten enthalten.
+
+* Empfehlung:
+  Keine Rohdaten oder Build-Artefakte einchecken.
+  Halten Sie `build/` und `.xlsx`-Dateien außerhalb des Repos oder fügen Sie nur bereinigte Beispiele hinzu.
+
+---
+
+## **Rechtlicher Hinweis / Scraping**
+
+* Das Tool ruft Inhalte von **emico.com** ab, um Datenblätter zu erstellen.
+  Bitte sicherstellen, dass Scraping und automatisierte Anfragen mit den Nutzungsbedingungen und der `robots.txt` von Emico übereinstimmen.
+  Für kommerzielle Nutzung oder Massendownloads sollte dies mit dem Emico-Team bzw. der Rechtsabteilung abgestimmt werden, um Rate-Limits oder Richtlinienverstöße zu vermeiden.
+
+---
+
+## **Empfohlene Änderungen für modulareren Code**
+
+* Trennung der Verantwortlichkeiten in Module:
+
+  * `scraper.py`: gesamte Web-Scraping- und Parsing-Logik (momentan in `main.py`).
+  * `pdf.py`: PDF-Erzeugungslogik (aktuell `pdf_generator.py`) — kann beibehalten, sollte aber eine klar definierte öffentliche API bereitstellen.
+  * `cli.py`: CLI-Argumentverarbeitung und Einstiegspunkt.
+  * `gui.py`: UI-Code (bereits `ui.py`) — UI-Logik getrennt halten und nur öffentliche APIs aus Scraper/PDF-Modulen verwenden.
+
+* **Vorteile:**
+  bessere Testbarkeit, klarere Struktur, geringerer Änderungsaufwand, bessere Wiederverwendbarkeit.
+
+---
+
+## **Erstellen einer ausführbaren Anwendung**
+
+Um eine ausführbare Datei zu erzeugen, folgenden Befehl im Terminal ausführen:
+(Der Name `"PDF-Generator_v1.2"` kann frei angepasst werden.)
+
+```
+pyinstaller --onefile --noconsole -clean --name "PDF-Generator_v1.2" --icon "assets/emicologo.ico" --add-data "assets:assets" ui.py
+```
+
+---
+
+## **Kontakt**
+
+Bei Fragen zu Inhalt oder Lizenzierung: **[sales@emico.com](mailto:sales@emico.com)**
+oder den Repository-Verantwortlichen innerhalb der syskomp-Gruppe kontaktieren.
+
+---
+
+Wenn du möchtest, kann ich die deutsche Version auch **formatieren**, **kürzen**, **für ein Readme.md optimieren**, **in offiziellerer Sprache**, oder als **Vorlage für Confluence** aufbereiten.
